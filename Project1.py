@@ -8,10 +8,10 @@ def print_slow(text):
 
 def start_game():
     print_slow("Welcome to the Text Adventure Game!")
-    print_slow("You find yourself in a dark forest. You can go left or right.")
+    print_slow("You find yourself in a dark forest. You can go left, right, or forward.")
 
     while True:
-        choice = input("Do you want to go left or right? ").strip().lower()
+        choice = input("Do you want to go left, right, or forward? ").strip().lower()
 
         if choice == "left":
             print_slow("You venture deeper into the forest.")
@@ -19,8 +19,11 @@ def start_game():
         elif choice == "right":
             print_slow("You head towards a clearing in the forest.")
             right_path()
+        elif choice == "forward":
+            print_slow("You follow a narrow path ahead.")
+            forward_path()
         else:
-            print_slow("Invalid choice. Please enter 'left' or 'right'.")
+            print_slow("Invalid choice. Please enter 'left', 'right', or 'forward'.")
 
 def left_path():
     print_slow("You stumble upon a mysterious cave entrance.")
@@ -72,6 +75,40 @@ def right_path():
             exit()
         else:
             print_slow("Invalid choice. Please enter 'downstream' or 'upstream'.")
+
+def forward_path():
+    print_slow("You come across a rickety bridge leading to a castle.")
+    print_slow("Do you want to cross the bridge or go back to the forest?")
+
+    while True:
+        choice = input("Enter 'cross' or 'back': ").strip().lower()
+
+        if choice == "cross":
+            print_slow("You cross the bridge and enter the castle.")
+            castle_path()
+        elif choice == "back":
+            print_slow("You decide to go back to the forest.")
+            start_game()
+        else:
+            print_slow("Invalid choice. Please enter 'cross' or 'back'.")
+
+def castle_path():
+    print_slow("Inside the castle, you encounter a dragon!")
+    print_slow("Do you want to fight the dragon or try to sneak past it?")
+
+    while True:
+        choice = input("Enter 'fight' or 'sneak': ").strip().lower()
+
+        if choice == "fight":
+            print_slow("You bravely engage the dragon in battle but are defeated.")
+            print_slow("Game Over.")
+            exit()
+        elif choice == "sneak":
+            print_slow("You attempt to sneak past the dragon and successfully escape the castle.")
+            print_slow("Congratulations! You've escaped danger.")
+            exit()
+        else:
+            print_slow("Invalid choice. Please enter 'fight' or 'sneak'.")
 
 if __name__ == "__main__":
     start_game()
