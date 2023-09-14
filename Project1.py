@@ -24,7 +24,7 @@ def print_slow(text, color=None, bold=False, underline=False):
     print()
 
 def start_game(location="the Dark Forest"):
-    print_slow(f"You find yourself in {location}.", YELLOW)
+    print_slow(f"Welcome to {location}!", YELLOW)
     print_slow("The air is thick with anticipation as you ponder your next move.", YELLOW)
     print_slow("You can go left, right, or forward.", YELLOW)
 
@@ -63,46 +63,52 @@ def left_path():
 def cave_path():
     print_slow("Inside the cave, you encounter a giant snake blocking your path!")
     print_slow("The snake's scales glisten in the dim light, and its eyes fixate on you.")
-    print_slow("Do you want to fight the snake or try to sneak past it?")
+    print_slow("You engage the giant snake in a fierce battle...", YELLOW)
 
     while True:
-        choice = input("Enter 'fight' or 'sneak': ").strip().lower()
+        print_slow("You have three choices:", YELLOW)
+        print_slow("1. Fight the giant snake.")
+        print_slow("2. Try to calm the giant snake.")
+        print_slow("3. Attempt to sneak past the giant snake.")
 
-        if choice == "fight":
-            print_slow("You engage the giant snake in a fierce battle...", YELLOW)
+        choice = input("Enter '1', '2', or '3': ").strip()
+
+        if choice == "1":
+            print_slow("You confront the giant snake in a thrilling battle...", YELLOW)
             if random.choice([True, False]):
-                print_slow("With determination, you defeat the giant snake in a battle of wits and strength!")
+                print_slow("With precise timing and strategy, you defeat the giant snake!", GREEN)
                 print_slow("The snake's lair holds a valuable treasure chest!", GREEN)
                 print_slow("Congratulations! You've conquered the snake and found treasure.")
-                cave_treasure()
+                choose_space_or_steampunk()
             else:
                 print_slow("The giant snake overpowers you and defeats you in combat.")
-                print_slow("Game Over.", RED)
-                death_adventures()
-        elif choice == "sneak":
-            print_slow("You attempt to sneak past the giant snake...", YELLOW)
+                death_adventure()
+        elif choice == "2":
+            print_slow("You attempt to calm the giant snake...", YELLOW)
             if random.choice([True, False]):
-                print_slow("You successfully sneak past the snake and discover a treasure chest!", GREEN)
-                print_slow("Congratulations! You've found treasure without a fight.")
-                cave_treasure()
+                print_slow("Your soothing words and gestures calm the giant snake.", GREEN)
+                print_slow("The snake peacefully slithers away, allowing you to continue your journey.", GREEN)
+                choose_space_or_steampunk()
             else:
-                print_slow("The snake notices your attempt to sneak and attacks you.")
-                print_slow("Game Over.", RED)
-                death_adventures()
+                print_slow("The giant snake remains hostile and attacks you.")
+                death_adventure()
+        elif choice == "3":
+            print_slow("You cautiously attempt to sneak past the giant snake...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("Your stealthy movements allow you to evade the giant snake.", GREEN)
+                print_slow("You find yourself back in the Dark Forest.", GREEN)
+                choose_space_or_steampunk()
+            else:
+                print_slow("The giant snake's keen senses detect your presence, and it confronts you.")
+                death_adventure()
         else:
-            print_slow("Invalid choice. Please enter 'fight' or 'sneak'.", RED)
-
-def cave_treasure():
-    print_slow("You open the treasure chest and find a vast fortune in gold and jewels!")
-    print_slow("The sight of the treasure takes your breath away.", YELLOW)
-    print_slow("Congratulations! You've won the game.", GREEN, True)
-    choose_next_adventure()
+            print_slow("Invalid choice. Please enter '1', '2', or '3'.", RED)
 
 def right_path():
     print_slow("You discover a river with a small boat.")
     print_slow("The river flows with a serene elegance, but there's an air of uncertainty.")
     print_slow("Do you want to take the boat downstream or upstream?")
-
+    
     while True:
         choice = input("Enter 'downstream' or 'upstream': ").strip().lower()
 
@@ -111,36 +117,56 @@ def right_path():
             riverbank_challenge()
         elif choice == "upstream":
             print_slow("You paddle upstream but get caught in a strong current and drown.")
-            print_slow("Game Over.", RED)
-            death_adventures()
+            death_adventure()
         else:
             print_slow("Invalid choice. Please enter 'downstream' or 'upstream'.", RED)
 
-def forward_path():
-    print_slow("You come across a rickety bridge leading to a castle.")
-    print_slow("The castle looms ahead, its towering spires shrouded in mystery.")
-    print_slow("Do you want to cross the bridge or go back to the forest?")
-
+def riverbank_challenge():
+    print_slow("As you drift downstream, you encounter a massive water serpent!")
+    print_slow("The water serpent rises from the depths, its enormous coils glistening with water droplets.")
+    print_slow("Do you want to fight the water serpent, attempt to evade it, or try to negotiate?")
+    
     while True:
-        choice = input("Enter 'cross' or 'back': ").strip().lower()
+        choice = input("Enter 'fight', 'evade', or 'negotiate': ").strip().lower()
 
-        if choice == "cross":
-            print_slow("You cross the bridge and enter the castle...", YELLOW)
-            castle_path()
-        elif choice == "back":
-            print_slow("You decide to go back to the forest.")
-            start_game()
+        if choice == "fight":
+            print_slow("You pilot your boat into an epic battle with the water serpent...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("With heroic effort and strategy, you defeat the water serpent!", GREEN)
+                print_slow("The river is now safe to navigate, and you continue downstream.", GREEN)
+                choose_space_or_steampunk()
+            else:
+                print_slow("The water serpent capsizes your boat, and you struggle in the water.")
+                death_adventure()
+        elif choice == "evade":
+            print_slow("You skillfully maneuver your boat to evade the water serpent.", YELLOW)
+            if random.choice([True, False]):
+                print_slow("Your quick reflexes allow you to escape the water serpent's pursuit.", GREEN)
+                print_slow("You find yourself downstream, safe from danger.", GREEN)
+                choose_space_or_steampunk()
+            else:
+                print_slow("The water serpent's relentless pursuit catches up to you.")
+                death_adventure()
+        elif choice == "negotiate":
+            print_slow("You attempt to negotiate with the water serpent...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("The water serpent agrees to let you pass peacefully.", GREEN)
+                print_slow("You continue downstream, unharmed by the encounter.", GREEN)
+                choose_space_or_steampunk()
+            else:
+                print_slow("The water serpent rejects your offer and attacks your boat.")
+                death_adventure()
         else:
-            print_slow("Invalid choice. Please enter 'cross' or 'back'.", RED)
+            print_slow("Invalid choice. Please enter 'fight', 'evade', or 'negotiate'.", RED)
 
-def castle_path():
-    print_slow("Inside the castle, you encounter a dragon!")
-    print_slow("The dragon is massive, and its scales shimmer with an otherworldly glow.")
-    print_slow("The treasure chest lies behind the dragon, and the room echoes with danger.")
-    print_slow("Do you want to fight the dragon or try to negotiate for the treasure?")
-
+def forward_path():
+    print_slow("You follow the narrow path, and it leads you deeper into the forest.")
+    print_slow("Suddenly, you come across a massive dragon blocking your way!")
+    print_slow("The dragon's scales shimmer with an otherworldly luster, and its fiery gaze locks onto you.")
+    print_slow("Do you want to fight the dragon, negotiate with it, or attempt to sneak past it?")
+    
     while True:
-        choice = input("Enter 'fight' or 'negotiate': ").strip().lower()
+        choice = input("Enter 'fight', 'negotiate', or 'sneak': ").strip().lower()
 
         if choice == "fight":
             print_slow("You engage the dragon in a fierce battle...", YELLOW)
@@ -148,237 +174,246 @@ def castle_path():
                 print_slow("After a heroic battle, you manage to defeat the dragon!", GREEN)
                 print_slow("The dragon's treasure is now yours.", YELLOW)
                 print_slow("Congratulations! You've slain the dragon and acquired the treasure.")
-                castle_treasure()
+                choose_space_or_steampunk()
             else:
                 print_slow("The dragon's power is too great, and it overcomes you in battle.")
-                print_slow("Game Over.", RED)
-                death_adventures()
+                death_adventure()
         elif choice == "negotiate":
             print_slow("You attempt to negotiate with the dragon...", YELLOW)
             if random.choice([True, False]):
                 print_slow("The dragon is impressed by your courage and wisdom.", GREEN)
-                print_slow("It agrees to share the treasure with you.")
+                print_slow("It agrees to share the treasure with you.", YELLOW)
                 print_slow("Congratulations! You've acquired the treasure without a fight.")
-                castle_treasure()
+                choose_space_or_steampunk()
             else:
                 print_slow("The dragon rejects your offer and attacks you.")
-                print_slow("Game Over.", RED)
-                death_adventures()
+                death_adventure()
+        elif choice == "sneak":
+            print_slow("You cautiously attempt to sneak past the dragon...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("Your stealthy movements allow you to evade the dragon.", GREEN)
+                print_slow("You find yourself back in the Dark Forest.", YELLOW)
+                choose_space_or_steampunk()
+            else:
+                print_slow("The dragon's keen senses detect your presence, and it confronts you.")
+                death_adventure()
         else:
-            print_slow("Invalid choice. Please enter 'fight' or 'negotiate'.", RED)
+            print_slow("Invalid choice. Please enter 'fight', 'negotiate', or 'sneak'.", RED)
 
-def castle_treasure():
-    print_slow("You open the treasure chest and find a vast fortune in gold, jewels, and rare artifacts!")
-    print_slow("The treasures glitter in the dim light of the castle.", YELLOW)
-    print_slow("Congratulations! You've won the game.", GREEN, True)
-    choose_next_adventure()
-
-def riverbank_challenge():
-    print_slow("You reach the calm riverbank downstream.")
-    print_slow("As you explore, you notice a hidden path that leads to a mystical forest.")
-    print_slow("The forest is filled with magical creatures and secrets.")
-    print_slow("Do you want to explore the mystical forest or return to the river?")
-
-    while True:
-        choice = input("Enter 'explore' or 'return': ").strip().lower()
-
-        if choice == "explore":
-            print_slow("You venture into the mystical forest, ready for a new adventure...", YELLOW)
-            mystical_forest_adventure()
-        elif choice == "return":
-            print_slow("You decide to return to the river and continue your journey downstream.")
-            choose_next_adventure()
-        else:
-            print_slow("Invalid choice. Please enter 'explore' or 'return'.", RED)
-
-def mystical_forest_adventure():
-    print_slow("In the mystical forest, you encounter a friendly talking squirrel named Squeaky.")
-    print_slow("Squeaky informs you about a magical portal hidden deep within the forest.")
-    print_slow("The portal is said to lead to a land of endless wonders and challenges.")
-    print_slow("Do you want to follow Squeaky to find the portal or go back to the riverbank?")
-
-    while True:
-        choice = input("Enter 'portal' or 'back': ").strip().lower()
-
-        if choice == "portal":
-            print_slow("You follow Squeaky through the dense forest, and together you discover the magical portal...", YELLOW)
-            portal_adventure()
-        elif choice == "back":
-            print_slow("You decide to return to the riverbank.")
-            choose_next_adventure()
-        else:
-            print_slow("Invalid choice. Please enter 'portal' or 'back'.", RED)
-
-def portal_adventure():
-    print_slow("You step through the magical portal and find yourself in a realm of enchanting beauty and mystery.")
-    print_slow("This new world is filled with wonders and challenges beyond your imagination.", YELLOW)
-    print_slow("As you explore this magical land, you come across two more portals, each leading to a different adventure.", YELLOW)
-    print_slow("Which portal do you choose?")
-
-    while True:
-        print_slow("Enter 'portal1' to enter the first portal or 'portal2' to enter the second portal.", YELLOW)
-        choice = input().strip().lower()
-
-        if choice == "portal1":
-            print_slow("You step through the first portal and embark on a new adventure...", YELLOW)
-            steampunk_adventure()
-        elif choice == "portal2":
-            print_slow("You step through the second portal and embark on a different adventure...", YELLOW)
-            space_adventure()
-        else:
-            print_slow("Invalid choice. Please enter 'portal1' or 'portal2'.", RED)
-
-def steampunk_adventure():
-    print_slow("You find yourself in a bustling city filled with towering steam-powered machines and airships.", YELLOW)
-    print_slow("A mysterious inventor approaches you and tells you about a rogue automaton terrorizing the city.", YELLOW)
-    print_slow("The inventor offers you a mechanized suit to stop the automaton.")
-    print_slow("Do you want to accept the mission and confront the rogue automaton?")
+def death_adventure():
+    print_slow("Unfortunately, you have met an untimely end.", YELLOW)
+    print_slow("In this moment, you are faced with a choice.", YELLOW)
+    print_slow("You can either choose to walk into the light or embrace the abyss.", YELLOW)
+    print_slow("Each path leads to a different adventure, and there is no turning back.", YELLOW)
     
     while True:
-        choice = input("Enter 'accept' or 'decline': ").strip().lower()
+        choice = input("Enter 'light' to walk into the light, 'abyss' to embrace the abyss, or 'retry' to try again: ").strip().lower()
 
-        if choice == "accept":
-            print_slow("You don the mechanized suit and set out to confront the rogue automaton...", YELLOW)
-            steampunk_boss_fight()
-        elif choice == "decline":
-            print_slow("You decline the mission and continue exploring the steampunk city.")
-            choose_next_adventure()
+        if choice == "light":
+            light_adventure()
+        elif choice == "abyss":
+            abyss_adventure()
+        elif choice == "retry":
+            start_game()
         else:
-            print_slow("Invalid choice. Please enter 'accept' or 'decline'.", RED)
+            print_slow("Invalid choice. Please enter 'light', 'abyss', or 'retry'.", RED)
 
-def steampunk_boss_fight():
-    print_slow("You track down the rogue automaton to a steam-powered factory.")
-    print_slow("The automaton is a formidable opponent with gears and pistons, but you're armed with advanced technology.")
-    print_slow("Prepare for a high-stakes boss fight!")
+def light_adventure():
+    print_slow("You walk into the blinding light and find yourself in a serene paradise.", YELLOW)
+    print_slow("This heavenly realm is filled with beauty and tranquility.", YELLOW)
+    
+    while True:
+        print_slow("You encounter a guardian of the light, a radiant being of great power.", YELLOW)
+        print_slow("You have three choices:", YELLOW)
+        print_slow("1. Engage in a battle with the guardian.")
+        print_slow("2. Attempt to persuade the guardian.")
+        print_slow("3. Seek guidance from the guardian.")
+        
+        choice = input("Enter '1', '2', or '3': ").strip()
+        
+        if choice == "1":
+            print_slow("Prepare for an epic battle against the guardian...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("With unwavering determination, you defeat the guardian of the light!", GREEN)
+                print_slow("The paradise radiates with even more brilliance.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The guardian's light overwhelms you, and you are consumed by its power.")
+                game_over()
+        elif choice == "2":
+            print_slow("You attempt to persuade the guardian of the light...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("The guardian is moved by your sincerity and agrees to aid you.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The guardian remains resolute and challenges you to a test of your resolve.")
+                game_over()
+        elif choice == "3":
+            print_slow("You seek guidance from the guardian of the light...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("The guardian imparts wisdom that illuminates your path.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The guardian's guidance leads you to a dead end, and you're lost in the paradise.")
+                game_over()
+        else:
+            print_slow("Invalid choice. Please enter '1', '2', or '3'.", RED)
 
-    if random.choice([True, False]):
-        print_slow("With precise timing and strategy, you defeat the rogue automaton!")
-        print_slow("The city is safe, and the inventor rewards you with a rare steampunk artifact.", GREEN)
-        print_slow("Congratulations! You've conquered the steampunk adventure and acquired a valuable artifact.")
-        choose_next_adventure()
-    else:
-        print_slow("The rogue automaton overwhelms you with its relentless power.")
-        print_slow("Game Over.", RED)
-        death_adventures()
+def abyss_adventure():
+    print_slow("You embrace the abyss and find yourself in a dark and eerie realm.", YELLOW)
+    print_slow("This abyssal realm is filled with shadows and uncertainty.", YELLOW)
+    
+    while True:
+        print_slow("You encounter a formidable dark entity, the Shadow Lord.", YELLOW)
+        print_slow("You have three choices:", YELLOW)
+        print_slow("1. Fight the Shadow Lord.")
+        print_slow("2. Try to persuade the Shadow Lord.")
+        print_slow("3. Attempt to sneak past the Shadow Lord.")
+        
+        choice = input("Enter '1', '2', or '3': ").strip()
+        
+        if choice == "1":
+            print_slow("Prepare for an epic battle against the Shadow Lord...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("With unwavering determination, you defeat the Shadow Lord!", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The Shadow Lord's dark powers overwhelm you, and you are consumed by darkness.")
+                game_over()
+        elif choice == "2":
+            print_slow("You attempt to persuade the Shadow Lord...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("The Shadow Lord is moved by your words and dissipates into the darkness.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The Shadow Lord remains resolute and attacks you.")
+                game_over()
+        elif choice == "3":
+            print_slow("You cautiously attempt to sneak past the Shadow Lord...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("Your stealthy movements allow you to evade the Shadow Lord.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The Shadow Lord's keen senses detect your presence, and it confronts you.")
+                game_over()
+        else:
+            print_slow("Invalid choice. Please enter '1', '2', or '3'.", RED)
+
+# ... (previous code)
+
+def choose_space_or_steampunk():
+    print_slow("You've emerged victorious and stand at a crossroads.", YELLOW)
+    print_slow("Two mysterious portals appear before you, each leading to a different adventure.", YELLOW)
+    print_slow("One portal has a futuristic energy, while the other exudes a steampunk vibe.")
+    print_slow("The choice is yours: will you enter the 'steampunk' portal or the 'space' portal?")
+
+    while True:
+        choice = input("Enter 'steampunk' or 'space': ").strip().lower()
+
+        if choice == "steampunk":
+            print_slow("You step into the 'steampunk' portal and find yourself in a city of marvels...", YELLOW)
+            steampunk_adventure()
+        elif choice == "space":
+            print_slow("You enter the 'space' portal and embark on an interstellar journey...", YELLOW)
+            space_adventure()
+        else:
+            print_slow("Invalid choice. Please enter 'steampunk' or 'space'.", RED)
+
+def steampunk_adventure():
+    print_slow("You find yourself in a sprawling steampunk city, filled with gears and gadgets.", YELLOW)
+    print_slow("A mechanical menace, a colossal steam-powered robot, threatens the city.", YELLOW)
+
+    while True:
+        print_slow("You have three choices:", YELLOW)
+        print_slow("1. Engage in a battle with the steam-powered robot.")
+        print_slow("2. Attempt to sabotage the robot from within.")
+        print_slow("3. Seek the help of an underground resistance group.")
+
+        choice = input("Enter '1', '2', or '3': ").strip()
+
+        if choice == "1":
+            print_slow("You confront the steam-powered robot in an epic showdown...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("With determination and cunning, you defeat the robot!", GREEN)
+                print_slow("The city celebrates your victory, and you are hailed as a hero.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The steam-powered robot's immense strength overwhelms you.")
+                game_over()
+        elif choice == "2":
+            print_slow("You sneak into the heart of the robot to sabotage its mechanisms...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("Your sabotage efforts cripple the robot, and it grinds to a halt.", GREEN)
+                print_slow("The city is saved, and you are celebrated as a hero of the steampunk realm.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("Your sabotage attempt triggers an alarm, and the robot captures you.")
+                game_over()
+        elif choice == "3":
+            print_slow("You seek out the underground resistance group for assistance...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("The resistance group provides you with advanced weaponry.", GREEN)
+                print_slow("With their help, you defeat the steam-powered robot and save the city.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The resistance group's plan fails, and the robot's forces overwhelm you.")
+                game_over()
+        else:
+            print_slow("Invalid choice. Please enter '1', '2', or '3'.", RED)
+
+# ... (rest of the code)
+
 
 def space_adventure():
     print_slow("You find yourself aboard a futuristic spaceship, hurtling through the cosmos.", YELLOW)
     print_slow("A distress signal from a nearby space station reveals that it's under attack by an alien warship.", YELLOW)
-    print_slow("Do you want to respond to the distress signal and engage the alien warship?")
     
     while True:
-        choice = input("Enter 'respond' or 'ignore': ").strip().lower()
-
-        if choice == "respond":
-            print_slow("You pilot your spaceship toward the space station and prepare for an epic space battle...", YELLOW)
-            space_boss_fight()
-        elif choice == "ignore":
-            print_slow("You decide to ignore the distress signal and continue your journey through space.")
-            choose_next_adventure()
+        print_slow("You have three choices:", YELLOW)
+        print_slow("1. Engage in a space battle with the alien warship.")
+        print_slow("2. Attempt to negotiate with the alien race.")
+        print_slow("3. Try to sneak onto the space station.")
+        
+        choice = input("Enter '1', '2', or '3': ").strip()
+        
+        if choice == "1":
+            print_slow("You pilot your spaceship into an epic space battle with the alien warship...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("With superior piloting skills and well-aimed shots, you defeat the alien warship!", GREEN)
+                print_slow("The space station is saved, and you are hailed as a hero of the cosmos.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The alien warship's firepower overwhelms your spaceship, and you're left adrift in space.")
+                game_over()
+        elif choice == "2":
+            print_slow("You attempt to negotiate with the alien race...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("The aliens agree to peace, and you successfully avert the conflict.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("The alien race remains hostile and attacks your spaceship.")
+                game_over()
+        elif choice == "3":
+            print_slow("You stealthily maneuver your spaceship to sneak onto the space station...", YELLOW)
+            if random.choice([True, False]):
+                print_slow("Your stealthy approach allows you to infiltrate the space station successfully.", GREEN)
+                game_win_screen()
+            else:
+                print_slow("Your sneaking attempt is detected, and the space station's defenses capture you.")
+                game_over()
         else:
-            print_slow("Invalid choice. Please enter 'respond' or 'ignore'.", RED)
+            print_slow("Invalid choice. Please enter '1', '2', or '3'.", RED)
 
-def space_boss_fight():
-    print_slow("You confront the alien warship in a fierce space battle.")
-    print_slow("The warship is heavily armed and fires powerful energy beams at your spaceship.")
-    print_slow("Get ready for a high-intensity boss fight in the depths of space!")
+def game_win_screen():
+    print_slow("Congratulations! You've achieved a victorious outcome in your adventure.", GREEN)
+    print_slow("Your journey has come to a triumphant end.", GREEN)
+    print_slow("Thank you for playing!", YELLOW)
+    exit()
 
-    if random.choice([True, False]):
-        print_slow("With superior piloting skills and well-aimed shots, you defeat the alien warship!")
-        print_slow("The space station is saved, and you are hailed as a hero of the cosmos.", GREEN)
-        print_slow("Congratulations! You've conquered the space adventure and saved the space station.")
-        choose_next_adventure()
-    else:
-        print_slow("The alien warship's firepower overwhelms your spaceship, and you're left adrift in space.")
-        print_slow("Game Over.", RED)
-        death_adventures()
-
-def death_adventures():
-    print_slow("You have met an unfortunate end. Your journey in this world has come to an end.", RED)
-    print_slow("As your consciousness fades, you see a bright light and a dark abyss before you.", YELLOW)
-    print_slow("You must make a choice:", YELLOW)
-    print_slow("Enter 'light' to walk into the light and start a new adventure in heaven.", YELLOW)
-    print_slow("Enter 'dark' to walk into the dark abyss and embark on a new adventure in the abyss.", YELLOW)
-
-    while True:
-        choice = input().strip().lower()
-
-        if choice == "light":
-            print_slow("You walk into the light and find yourself in a heavenly realm...", YELLOW)
-            heaven_adventure()
-        elif choice == "dark":
-            print_slow("You walk into the dark abyss, and darkness surrounds you...", YELLOW)
-            abyss_adventure()
-        else:
-            print_slow("Invalid choice. Please enter 'light' or 'dark'.", RED)
-
-def heaven_adventure():
-    print_slow("You are in a serene and beautiful realm where everything is peaceful.", YELLOW)
-    print_slow("But there is a celestial challenge ahead. You encounter a guardian angel who presents you with a quest.", YELLOW)
-    print_slow("Will you accept the quest and face the celestial challenge?")
-    
-    while True:
-        choice = input("Enter 'accept' or 'decline': ").strip().lower()
-
-        if choice == "accept":
-            print_slow("You accept the quest and prepare to embark on your heavenly adventure...", YELLOW)
-            heaven_boss_fight()
-        elif choice == "decline":
-            print_slow("You decline the quest and bask in the tranquility of this heavenly realm.")
-            choose_next_adventure()
-        else:
-            print_slow("Invalid choice. Please enter 'accept' or 'decline'.", RED)
-
-def heaven_boss_fight():
-    print_slow("You follow the guidance of the guardian angel and arrive at the celestial challenge.")
-    print_slow("A powerful celestial being awaits you, ready to test your spirit and valor.")
-    print_slow("Prepare for a divine boss fight!")
-
-    if random.choice([True, False]):
-        print_slow("With unwavering faith and determination, you conquer the celestial challenge!", GREEN)
-        print_slow("You are rewarded with divine blessings and enlightenment.")
-        print_slow("Congratulations! You've conquered the heavenly adventure and gained celestial wisdom.")
-        choose_next_adventure()
-    else:
-        print_slow("The celestial being's power overwhelms you, and you are sent back to the heavenly realm.", RED)
-        print_slow("Game Over.", RED)
-        death_adventures()
-
-def abyss_adventure():
-    print_slow("You find yourself in a dark and foreboding realm filled with shadows and mysterious creatures.", YELLOW)
-    print_slow("A sinister figure appears before you, offering you a dark and perilous quest.", YELLOW)
-    print_slow("Do you dare to accept the dark quest and face the malevolent forces of the abyss?")
-    
-    while True:
-        choice = input("Enter 'accept' or 'decline': ").strip().lower()
-
-        if choice == "accept":
-            print_slow("You accept the dark quest, and the sinister figure leads you into the heart of the abyss...", YELLOW)
-            abyss_boss_fight()
-        elif choice == "decline":
-            print_slow("You reject the dark quest and try to find a way to escape this menacing realm.")
-            choose_next_adventure()
-        else:
-            print_slow("Invalid choice. Please enter 'accept' or 'decline'.", RED)
-
-def abyss_boss_fight():
-    print_slow("You confront the malevolent forces of the abyss in a nightmarish battle.")
-    print_slow("The dark entities are relentless and formidable.")
-    print_slow("Prepare for a harrowing boss fight in the depths of darkness!")
-
-    if random.choice([True, False]):
-        print_slow("With sheer determination and a glimmer of hope, you overcome the malevolent forces of the abyss!", GREEN)
-        print_slow("You emerge from the abyss with newfound strength and resilience.")
-        print_slow("Congratulations! You've conquered the abyssal adventure and faced the darkness head-on.")
-        choose_next_adventure()
-    else:
-        print_slow("The malevolent forces of the abyss consume you, and your essence is forever trapped in darkness.", RED)
-        print_slow("Game Over.", RED)
-        death_adventures()
-
-def choose_next_adventure():
-    print_slow("Would you like to embark on a new adventure?")
-    print_slow("Enter 'yes' to start a new adventure or 'no' to end the game.", YELLOW)
+def game_over():
+    print_slow("Unfortunately, your adventure has reached a premature end.", RED)
+    print_slow("But fear not, for there are always more adventures awaiting.", RED)
+    print_slow("Would you like to start a new adventure?")
 
     while True:
         choice = input("Enter 'yes' or 'no': ").strip().lower()
@@ -386,7 +421,7 @@ def choose_next_adventure():
         if choice == "yes":
             start_game()
         elif choice == "no":
-            print_slow("Thank you for playing! Goodbye.", GREEN, True)
+            print_slow("Thank you for playing! Until next time.", YELLOW)
             exit()
         else:
             print_slow("Invalid choice. Please enter 'yes' or 'no'.", RED)
