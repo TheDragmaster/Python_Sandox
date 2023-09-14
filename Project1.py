@@ -43,45 +43,41 @@ def left_path():
             print_slow("Invalid choice. Please enter 'cave' or 'back'.")
 
 def cave_path():
-    print_slow("Inside the cave, you encounter a giant snake!")
-    print_slow("Do you want to fight the snake or try to run away?")
+    print_slow("Inside the cave, you encounter a giant snake blocking your path!")
+    print_slow("The snake appears to be guarding something.")
+    print_slow("Do you want to fight the snake or try to sneak past it?")
 
     while True:
-        choice = input("Enter 'fight' or 'run': ").strip().lower()
+        choice = input("Enter 'fight' or 'sneak': ").strip().lower()
 
         if choice == "fight":
             print_slow("You engage the giant snake in a battle...")
             if random.choice([True, False]):
                 print_slow("You defeated the giant snake in a fierce battle!")
-                print_slow("Congratulations! You've conquered the snake and continue exploring the cave.")
+                print_slow("The snake's lair holds a valuable treasure chest!")
+                print_slow("Congratulations! You've conquered the snake and found treasure.")
                 cave_treasure()
             else:
                 print_slow("The giant snake overpowers you and defeats you in combat.")
                 print_slow("Game Over.")
                 exit()
-        elif choice == "run":
-            print_slow("You attempt to flee from the giant snake but are caught and defeated.")
-            print_slow("Game Over.")
-            exit()
+        elif choice == "sneak":
+            print_slow("You attempt to sneak past the giant snake...")
+            if random.choice([True, False]):
+                print_slow("You successfully sneak past the snake and discover a treasure chest!")
+                print_slow("Congratulations! You've found treasure without a fight.")
+                cave_treasure()
+            else:
+                print_slow("The snake notices your attempt to sneak and attacks you.")
+                print_slow("Game Over.")
+                exit()
         else:
-            print_slow("Invalid choice. Please enter 'fight' or 'run'.")
+            print_slow("Invalid choice. Please enter 'fight' or 'sneak'.")
 
 def cave_treasure():
-    print_slow("After defeating the snake, you find a hidden chamber with a valuable treasure chest!")
-    print_slow("Do you want to open the chest or leave it alone?")
-
-    while True:
-        choice = input("Enter 'open' or 'leave': ").strip().lower()
-
-        if choice == "open":
-            print_slow("You open the chest and find a fortune in gold and jewels!")
-            print_slow("Congratulations! You've won the game.")
-            exit()
-        elif choice == "leave":
-            print_slow("You decide to leave the chest and return to the forest.")
-            start_game()
-        else:
-            print_slow("Invalid choice. Please enter 'open' or 'leave'.")
+    print_slow("You open the treasure chest and find a fortune in gold and jewels!")
+    print_slow("Congratulations! You've won the game.")
+    exit()
 
 def right_path():
     print_slow("You discover a river with a small boat.")
@@ -91,8 +87,8 @@ def right_path():
         choice = input("Enter 'downstream' or 'upstream': ").strip().lower()
 
         if choice == "downstream":
-            print_slow("You paddle downstream...")
-            shark_battle()
+            print_slow("You paddle downstream and reach a calm riverbank.")
+            riverbank_challenge()
         elif choice == "upstream":
             print_slow("You paddle upstream but get caught in a strong current and drown.")
             print_slow("Game Over.")
@@ -118,46 +114,26 @@ def forward_path():
 
 def castle_path():
     print_slow("Inside the castle, you encounter a dragon!")
-    print_slow("Do you want to fight the dragon or try to sneak past it?")
+    print_slow("The dragon guards a treasure chest in the corner of the room.")
+    print_slow("Do you want to fight the dragon or try to negotiate for the treasure?")
 
     while True:
-        choice = input("Enter 'fight' or 'sneak': ").strip().lower()
+        choice = input("Enter 'fight' or 'negotiate': ").strip().lower()
 
         if choice == "fight":
             print_slow("You engage the dragon in a fierce battle...")
-            print_slow("After a long and intense struggle, you manage to defeat the dragon!")
-            print_slow("Congratulations! You've slain the dragon and won the game.")
-            exit()
-        elif choice == "sneak":
-            print_slow("You attempt to sneak past the dragon but are caught and devoured.")
-            print_slow("Game Over.")
-            exit()
-        else:
-            print_slow("Invalid choice. Please enter 'fight' or 'sneak'.")
-
-def shark_battle():
-    print_slow("As you paddle downstream, you encounter a giant shark!")
-    print_slow("Do you want to fight the shark or try to escape back to shore?")
-
-    while True:
-        choice = input("Enter 'fight' or 'escape': ").strip().lower()
-
-        if choice == "fight":
-            print_slow("You engage the giant shark in a battle...")
             if random.choice([True, False]):
-                print_slow("You defeated the giant shark in a fierce battle!")
-                print_slow("Congratulations! You've conquered the shark and continue your journey.")
-                start_game()
+                print_slow("After a long and intense struggle, you manage to defeat the dragon!")
+                print_slow("Congratulations! You've slain the dragon and found treasure.")
+                castle_treasure()
             else:
-                print_slow("The giant shark overwhelms you and defeats you in combat.")
+                print_slow("The dragon's might proves too much, and it defeats you.")
                 print_slow("Game Over.")
                 exit()
-        elif choice == "escape":
-            print_slow("You try to paddle back to shore but the giant shark catches up and attacks.")
-            print_slow("Game Over.")
-            exit()
-        else:
-            print_slow("Invalid choice. Please enter 'fight' or 'escape'.")
+        elif choice == "negotiate":
+            print_slow("You attempt to negotiate with the dragon...")
+            if random.choice([True, False]):
+                print
 
 if __name__ == "__main__":
     start_game()
